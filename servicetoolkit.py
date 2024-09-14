@@ -3,6 +3,7 @@ from agentscope.agents.react_agent import ReActAgent
 import agentscope
 from agentscope.message import Msg
 import os
+import gradio as gr
 
 from agentscope.service import(
 ServiceToolkit,
@@ -33,8 +34,19 @@ QIANWEN_CFG_DICT = {
         }
     }
 
-def add_name(a: str, b: str):
+def add_name(a: str, b: str)->str:
+    """
+	计算任何的名字或字符串相加
+	
 
+    Args:
+        a (str): 参数1
+        b (str): 参数2
+
+    Returns:
+        str: 结果
+    
+	"""
     output = a + b + 'hhh'
     status =ServiceExecStatus.SUCCESS
     return ServiceResponse(status, output)
@@ -61,5 +73,5 @@ class ToolDemo:
 
 if __name__ =='__main__':
     tool_demo = ToolDemo()
-    response = tool_demo.invoke("你是一个中文理解大师，可以计算任何的名字或字符串相加。所以，woai加xiaoyezi等于几")
+    response = tool_demo.invoke("woai加xiaoyezi等于几")
     print(response)
